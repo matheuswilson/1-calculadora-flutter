@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 import 'memory.dart';
 
@@ -17,6 +18,11 @@ class _CalculatorState extends State<Calculator> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text('Calculadora'),
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.share),
+              onPressed: () => share(context, _memory.result),
+              ),
+        ],
       ),
       body: Column(
         children: <Widget>[
@@ -25,6 +31,17 @@ class _CalculatorState extends State<Calculator> {
           _buildKeyboard(),
         ],
       ),
+    );
+  }
+
+  void share(BuildContext context, String str){
+    final RenderBox box = context.findRenderObject();
+    final String text = str;
+
+    Share.share(
+      text,
+      subject: text,
+      sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
     );
   }
 
@@ -39,6 +56,13 @@ class _CalculatorState extends State<Calculator> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
+              child: Text(
+                _memory.operacoes,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
+              ),),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: AutoSizeText(
                 _memory.result,
                 minFontSize: 20.0,
@@ -46,6 +70,7 @@ class _CalculatorState extends State<Calculator> {
                 maxLines: 1,
                 textAlign: TextAlign.end,
                 style: TextStyle(
+                  fontFamily: 'Calculator',
                   fontWeight: FontWeight.w200,
                   decoration: TextDecoration.none,
                   fontSize: 80.0,

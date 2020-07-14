@@ -20,10 +20,20 @@ dependencies:
   flutter:
     sdk: flutter
   auto_size_text: ^2.1.0
+  splashscreen: ^1.2.0
+  share: ^0.6.4+1
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.7.5
+
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/launcher/calculator.png"
+  image_path_android: "assets/launcher/calculator.png"
 
 
 # For information on the generic Dart part of this file, see the
@@ -48,6 +58,10 @@ flutter:
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
 
+  fonts:
+    - family: Calculator
+      fonts:
+        - asset: assets/fonts/Calculator.ttf
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -67,3 +81,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  

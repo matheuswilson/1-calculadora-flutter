@@ -6,6 +6,7 @@ class Memory {
   int _bufferIndex = 0;
 
   String result = '0';
+  String operacoes = '';
 
   Memory() {
     _clear();
@@ -13,6 +14,7 @@ class Memory {
 
   void _clear() {
     result = '0';
+    operacoes = '';
     _buffer.setAll(0, [0.0, 0.0]);
     _bufferIndex = 0;
     _operation = null;
@@ -43,6 +45,7 @@ class Memory {
     if (result == '0' && digit != '.') result = '';
 
     result += digit;
+    operacoes += digit;
 
     _buffer[_bufferIndex] = double.tryParse(result);
     _usedOperation = false;
@@ -62,7 +65,7 @@ class Memory {
 
     if (operation != '=') 
       _operation = operation;
-
+      operacoes += operation;
     result = _buffer[0].toString();
     result = result.endsWith('.0') ? result.split('.')[0] : result;
 
